@@ -8,8 +8,9 @@ container.addEventListener("click", toggleZoom);
 
 function onZoom(e) {
     if (enabled) {
-        const x = e.clientX - e.target.offsetLeft;
-        const y = e.clientY - e.target.offsetTop;
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
         img.style.transformOrigin = `${x}px ${y}px`;
         img.style.transform = "scale(1.5)";
     }
@@ -22,8 +23,9 @@ function toggleZoom(e) {
         img.style.transform = "scale(1)";
     } else {
         enabled = true;
-        const x = e.clientX - e.target.offsetLeft;
-        const y = e.clientY - e.target.offsetTop;
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
         img.style.transformOrigin = `${x}px ${y}px`;
         img.style.transform = "scale(1.5)";
     }
