@@ -31,9 +31,9 @@ function toggleZoom(e) {
     }
 }
 
-// container.addEventListener("mouseleave", offZoom);
-// function offZoom(e) {
-//     enabled = false;
-//     img.style.transformOrigin = `center center`;
-//     img.style.transform = "scale(1)";
-// }
+container.addEventListener("mouseleave", offZoom);
+function offZoom(e) {
+    enabled = false;
+    img.style.transformOrigin = `center center`;
+    img.style.transform = "scale(1)";
+}
