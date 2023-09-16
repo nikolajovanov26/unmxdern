@@ -14,6 +14,51 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/test', function (Request $request) {
+    return response()->json(implode(',', $request->all()), 200);
+});
+
+Route::post('/review', function (Request $request) {
+
+    $email = $request->get('email');
+    $isValid = $request->get('isValid');
+    $content = $request->get('content');
+    $url = $request->get('url');
+    $ip = $request->get('ip');
+
+    \Illuminate\Support\Facades\Log::info('data', $request->all());
+
+//    if (!$isValid) {
+//        try {
+//            $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
+//        } catch (Exception $exception) {
+//            try {
+//                $user = \App\Models\WebflowUser::where('ip_address', $ip)->firstOrFail();
+//            } catch (Exception $exception) {
+//                response()->json(null, 403);
+//            }
+//        }
+//    }
+//
+//    $product = \App\Models\Product::firstWhere('slug', $url);
+//
+//    if (!isset($product)) {
+//        // create product
+//    }
+//
+//    $review = \App\Models\Review::create([
+//        'webflow_user_id' => $user->id,
+//        'product_id' => $product->id,
+//        'string' => $content,
+//    ]);
+//
+//    $author = $user->name ?? 'NAME!';
+//
+//    (new \App\Http\Repositories\WebflowRepository())->createReview($review, $author);
+//
+    return response()->json('Review added', 200);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
