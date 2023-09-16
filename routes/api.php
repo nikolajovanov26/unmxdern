@@ -26,7 +26,7 @@ Route::post('/review', function (Request $request) {
     $url = $request->get('url');
     $ip = $request->get('ip');
 
-    \Illuminate\Support\Facades\Log::info('data', $request->all());
+    \Illuminate\Support\Facades\Log::error('data', $request->all());
 
 //    if (!$isValid) {
 //        try {
@@ -56,7 +56,7 @@ Route::post('/review', function (Request $request) {
 //
 //    (new \App\Http\Repositories\WebflowRepository())->createReview($review, $author);
 //
-    return response()->json('Review added', 200);
+    return response()->json(['message' => 'Review added'], 200);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
