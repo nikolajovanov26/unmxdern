@@ -27,7 +27,9 @@ Route::post('/review', function (Request $request) {
 //    $url = $request->get('url');
 //    $ip = $request->get('ip');
 //
-    Log::error('data', $request->all());
+    Log::error('data', [
+        'data' => $request->all()
+    ]);
 
 //    if (!$isValid) {
 //        try {
