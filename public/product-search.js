@@ -41,3 +41,13 @@ function filterProducts(search) {
         }
     })
 }
+
+popUpOpenTriggers = document.querySelectorAll('[data-popup-trigger=open]')
+popUpOpenTriggers.forEach(popUpOpenTrigger => {
+    popUpOpenTrigger.addEventListener('click', function() { document.querySelector('body').style.overflow = 'hidden'});
+})
+
+popUpCloseTriggers = document.querySelectorAll('[data-popup-trigger=close]')
+popUpCloseTriggers.forEach(popUpCloseTrigger => {
+    popUpCloseTrigger.addEventListener('click', function() { document.querySelector('body').style.overflow = 'auto'});
+})
