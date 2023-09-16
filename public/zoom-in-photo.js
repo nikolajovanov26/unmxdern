@@ -1,39 +1,42 @@
-container = document.querySelector(".zoom-image-div");
-img = document.querySelector(".zoom-image-div img");
-enabled = false;
+const containers = document.querySelectorAll(".zoom-image-div");
+const images = document.querySelectorAll(".zoom-image-div img");
 
-container.addEventListener("mousemove", onZoom);
-container.addEventListener("mouseover", onZoom);
-container.addEventListener("click", toggleZoom);
+const enabledStates = new Array(containers.length).fill(false);
 
-function onZoom(e) {
-    if (enabled) {
-        const rect = container.getBoundingClientRect();
+containers.forEach((container, index) => {
+    container.addEventListener("mousemove", (e) => onZoom(e, index));
+    container.addEventListener("mouseover", (e) => onZoom(e, index));
+    container.addEventListener("click", (e) => toggleZoom(e, index));
+    container.addEventListener("mouseleave", () => offZoom(index));
+});
+
+function onZoom(e, index) {
+    if (enabledStates[index]) {
+        const rect = containers[index].getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        img.style.transformOrigin = `${x}px ${y}px`;
-        img.style.transform = "scale(1.5)";
+        images[index].style.transformOrigin = `${x}px ${y}px`;
+        images[index].style.transform = "scale(1.5)";
     }
 }
 
-function toggleZoom(e) {
-    if (enabled) {
-        enabled = false;
-        img.style.transformOrigin = `center center`;
-        img.style.transform = "scale(1)";
+function toggleZoom(e, index) {
+    if (enabledStates[index]) {
+        enabledStates[index] = false;
+        images[index].style.transformOrigin = `center center`;
+        images[index].style.transform = "scale(1)";
     } else {
-        enabled = true;
-        const rect = container.getBoundingClientRect();
+        enabledStates[index] = true;
+        const rect = containers[index].getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        img.style.transformOrigin = `${x}px ${y}px`;
-        img.style.transform = "scale(1.5)";
+        images[index].style.transformOrigin = `${x}px ${y}px`;
+        images[index].style.transform = "scale(1.5)";
     }
 }
 
-container.addEventListener("mouseleave", offZoom);
-function offZoom(e) {
-    enabled = false;
-    img.style.transformOrigin = `center center`;
-    img.style.transform = "scale(1)";
+function offZoom(index) {
+    enabledStates[index] = false;
+    images[index].style.transformOrigin = `center center`;
+    images[index].style.transform = "scale(1)";
 }
