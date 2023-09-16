@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,13 +21,13 @@ Route::post('/test', function (Request $request) {
 
 Route::post('/review', function (Request $request) {
 
-    $email = $request->get('email');
-    $isValid = $request->get('isValid');
-    $content = $request->get('content');
-    $url = $request->get('url');
-    $ip = $request->get('ip');
-
-    \Illuminate\Support\Facades\Log::error('data', $request->all());
+//    $email = $request->get('email');
+//    $isValid = $request->get('isValid');
+//    $content = $request->get('content');
+//    $url = $request->get('url');
+//    $ip = $request->get('ip');
+//
+//    Log::error('data', $request->all());
 
 //    if (!$isValid) {
 //        try {
@@ -46,11 +47,11 @@ Route::post('/review', function (Request $request) {
 //        // create product
 //    }
 //
-//    $review = \App\Models\Review::create([
-//        'webflow_user_id' => $user->id,
-//        'product_id' => $product->id,
-//        'string' => $content,
-//    ]);
+    $review = \App\Models\Review::create([
+        'webflow_user_id' => 1,
+        'product_id' => 1,
+        'string' => implode(',',$request->all())
+    ]);
 //
 //    $author = $user->name ?? 'NAME!';
 //
