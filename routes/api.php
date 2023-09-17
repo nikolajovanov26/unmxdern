@@ -20,7 +20,7 @@ Route::post('/test', function (Request $request) {
     return response()->json(implode(',', $request->all()), 200);
 });
 
-Route::middleware('auth')->post('/review', function (Request $request) {
+Route::middleware('auth:api')->post('/review', function (Request $request) {
 
 //    $email = $request->get('email');
 //    $isValid = $request->get('isValid');
