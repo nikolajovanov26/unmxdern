@@ -4,6 +4,7 @@ namespace App\Http\Repositories;
 
 use App\Models\Review;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class WebflowRepository
 {
@@ -16,9 +17,9 @@ class WebflowRepository
             'authorization' => 'Bearer ' . env('WEBFLOW_KEY'),
         ])->withBody(json_encode([
             'fieldData' => [
-                'body' => $review->content,
-                'name' => $author,
-                'product' => '64d957a1399cb463eb5bdf3e',
+                'body'    => $review->content,
+                'name'    => $author,
+                'product' => '64d957a1399cb463eb5bdfc1',
             ]
         ]))->post(self::BASEURL . '/collections/' . env('REVIEW_COLLECTION_ID') . '/items')
             ->json();
@@ -26,7 +27,11 @@ class WebflowRepository
         $review->webflow_id = $response->id;
         $review->save();
 
-//        $this->publishItem(env('REVIEW_COLLECTION_ID'), $response->id);
+        $this->publishItem(env('REVIEW_COLLECTION_ID'), $response->id);
+
+        Log::info('Review Added', [
+            'response' => $response
+        ]);
     }
 
     public function publishItem($collectionId, $itemId)
@@ -38,5 +43,9 @@ class WebflowRepository
             'itemIds' => [$itemId]
         ]))->post(self::BASEURL . '/collections/' . $collectionId . '/items/publish')
             ->json();
+
+        Log::info('Item Published', [
+            'response' => $response
+        ]);
     }
 }
