@@ -20,7 +20,7 @@ Route::post('/test', function (Request $request) {
     return response()->json(implode(',', $request->all()), 200);
 });
 
-Route::post('/review', function (Request $request) {
+Route::middleware('auth')->post('/review', function (Request $request) {
 
 //    $email = $request->get('email');
 //    $isValid = $request->get('isValid');
@@ -61,21 +61,4 @@ Route::post('/review', function (Request $request) {
 //    (new \App\Http\Repositories\WebflowRepository())->createReview($review, $author);
 //
     return response()->json(['message' => 'Review added'], 200);
-});
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::get('/api-token', function () {
-    $response = Http::asForm()->post(env('APP_URL') . '/oauth/token', [
-        'grant_type'    => 'client_credentials',
-        'client_id'     => env('CLIENT_ID'),
-        'client_secret' => env('CLIENT_SECRET'),
-        'username'      => env('USERNAME'),
-        'password'      => env('PASSWORD'),
-        'scope'         => '*',
-    ]);
-
-    return $response->json();
 });
