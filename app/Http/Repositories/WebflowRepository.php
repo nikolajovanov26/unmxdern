@@ -28,10 +28,10 @@ class WebflowRepository
             'response' => $response
         ]);
 
-        $review->webflow_id = $response->id;
+        $review->webflow_id = $response['id'];
         $review->save();
 
-        $this->publishItem(env('REVIEW_COLLECTION_ID'), $response->id);
+        $this->publishItem(env('REVIEW_COLLECTION_ID'), $response['id']);
     }
 
     public function publishItem($collectionId, $itemId)
