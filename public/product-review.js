@@ -20,7 +20,7 @@ reviewForm.addEventListener('submit', function (e) {
             <div class="review">
                 <p class="paragraph">${content}</p>
                 <div class="review-header footer">
-                    <div class="review-author">NAME HERE</div>
+                    <div class="review-author">You</div>
                     <div class="review-date">Just Now</div>
                 </div>
             </div>
