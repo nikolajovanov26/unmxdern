@@ -31,7 +31,7 @@ class ReviewController extends Controller
         $product = \App\Models\Product::firstWhere('slug', $url);
 
         if (!isset($product)) {
-            $product = Product::crate([
+            $product = Product::create([
                 'webflow_id' => '64d957a1399cb463eb5bdf3e',
                 'name' => 'Product name',
                 'slug' => $url
