@@ -1,8 +1,6 @@
-// check local storage to see if he has already posted a review on the product
-
-reviewForm = document.querySelector('#review-form')
-submitButton = document.querySelector('#post-comment')
-reviewsDiv = document.querySelector('#review-list')
+reviewForm = document.querySelector('#review-form');
+submitButton = document.querySelector('#post-comment');
+reviewsDiv = document.querySelector('#review-list');
 
 document.querySelector('#email-3').value = localStorage.getItem("email");
 document.querySelector('#isValid').value = localStorage.getItem("valid");
@@ -10,12 +8,26 @@ document.querySelector('#isValid').value = localStorage.getItem("valid");
 parts = window.location.href.split('/');
 document.querySelector('#url').value = parts.at(-1);
 
-reviewForm.addEventListener('submit', function () {
-    setTimeout(function(){
+reviewForm.addEventListener('submit', function (e) {
+
+    setTimeout(function () {
+
+        content = document.querySelector('#post-content').value;
         reviewForm.remove()
 
-        newReview = '<div id="review-list" class="review-list"><div class="review-header"><div class="review-author">Full Name</div><div class="review-date">Just now</div></div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p></div>'
-        reviewsDiv.innerHTML = newReview + reviewsDiv.innerHTML;
-    });
-})
+        newReviewHTML = `
+        <div role="listitem" class="w-dyn-item">
+            <div class="review">
+                <p class="paragraph">${content}</p>
+                <div class="review-header footer">
+                    <div class="review-author">NAME HERE</div>
+                    <div class="review-date">Just Now</div>
+                </div>
+            </div>
+        </div>
+    `;
 
+        // Add the new review to the start of the reviews list
+        reviewsDiv.insertAdjacentHTML('afterbegin', newReviewHTML);
+    }, 2000)
+});

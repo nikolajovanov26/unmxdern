@@ -3,29 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\WebflowUser;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ReviewController extends Controller
 {
     public function __invoke(Request $request)
     {
         $email = $request->get('email');
-        $isValid = $request->get('isValid');
+//        $isValid = $request->get('isValid');
+        $isValid = true;
         $content = $request->get('content');
         $url = $request->get('url');
         $ip = $request->get('ip');
 
-        if (!$isValid) {
-            try {
+        try {
+            if ($isValid) {
                 $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
-            } catch (Exception $exception) {
-                try {
-                    $user = \App\Models\WebflowUser::where('ip_address', $ip)->firstOrFail();
-                } catch (Exception $exception) {
-                    response()->json(null, 403);
-                }
+            } else {
+                $user = \App\Models\WebflowUser::where('ip_address', $ip)->firstOrFail();
             }
+
+        } catch (Exception $exception) {
+            Log::error('No user found!');
+
+            $user = WebflowUser::first();
         }
 
         $product = \App\Models\Product::firstWhere('slug', $url);
