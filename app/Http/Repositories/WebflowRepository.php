@@ -24,14 +24,14 @@ class WebflowRepository
         ]))->post(self::BASEURL . '/collections/' . env('REVIEW_COLLECTION_ID') . '/items')
             ->json();
 
+        Log::info('Review Added', [
+            'response' => $response
+        ]);
+
         $review->webflow_id = $response->id;
         $review->save();
 
         $this->publishItem(env('REVIEW_COLLECTION_ID'), $response->id);
-
-        Log::info('Review Added', [
-            'response' => $response
-        ]);
     }
 
     public function publishItem($collectionId, $itemId)
