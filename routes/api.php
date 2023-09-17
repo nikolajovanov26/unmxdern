@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
@@ -51,8 +52,8 @@ Route::post('/review', function (Request $request) {
 //
     $review = \App\Models\Review::create([
         'webflow_user_id' => 1,
-        'product_id' => 1,
-        'string' => implode(',',$request->all())
+        'product_id'      => 1,
+        'string'          => implode(',', $request->all())
     ]);
 //
 //    $author = $user->name ?? 'NAME!';
@@ -64,4 +65,17 @@ Route::post('/review', function (Request $request) {
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/api-token', function () {
+    $response = Http::asForm()->post(env('APP_URL') . '/oauth/token', [
+        'grant_type'    => 'client_credentials',
+        'client_id'     => env('CLIENT_ID'),
+        'client_secret' => env('CLIENT_SECRET'),
+        'username'      => env('USERNAME'),
+        'password'      => env('PASSWORD'),
+        'scope'         => '*',
+    ]);
+
+    return $response->json();
 });
