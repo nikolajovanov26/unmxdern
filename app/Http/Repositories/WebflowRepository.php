@@ -17,7 +17,7 @@ class WebflowRepository
             'authorization' => 'Bearer ' . env('WEBFLOW_KEY'),
         ])->withBody(json_encode([
             'fieldData' => [
-                'body'    => $review->content,
+                'body'    => $review->string ?? 'no recieved',
                 'name'    => $author,
                 'product' => '64d957a1399cb463eb5bdfc1',
             ]
