@@ -1,7 +1,7 @@
 localStorage.setItem("valid", true);
 
-fetch("https://app.unmxdern.com/api/user-data?email=" . localStorage.getItem("email"))
+fetch("https://app.unmxdern.com/api/user-data?email=" + localStorage.getItem("email"))
     .then((response) => response.json())
-    .then((json) => console.log(json));
+    .then((json) => localStorage.setItem("name", json.user));
 
-// window.location.href = "/";
+window.location.href = "/";

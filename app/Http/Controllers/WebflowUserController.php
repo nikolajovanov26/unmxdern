@@ -15,14 +15,14 @@ class WebflowUserController extends Controller
         try {
             $user = WebflowUser::where('email', $email)->firstOrFail();
 
-            return $user->name ?? 'User';
+            $name = $user->name;
         } catch (\Exception $exception) {
             Log::error('Get user data request recieved with invalid email', [
                 'email' => $request->email
             ]);
         }
 
-        return 'User';
+        return response()->json(['user' => $name ?? 'User']);
     }
 
     public function newUser(Request $request)
