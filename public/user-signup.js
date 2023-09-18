@@ -1,5 +1,3 @@
-email = document.querySelector('#wf-log-in-email')
-name = document.querySelector('#wf-sign-up-name')
 form = document.querySelector('[data-wf-user-form-type="signup"]');
 
 form.addEventListener('submit', function () {
@@ -10,8 +8,8 @@ form.addEventListener('submit', function () {
     fetch("https://app.unmxdern.com/api/new-user", {
         method: "POST",
         body: JSON.stringify({
-            email: email,
-            name: name,
+            email:  document.querySelector('#wf-sign-up-email').value,
+            name: document.querySelector('#wf-sign-up-name').value,
         }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
