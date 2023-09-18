@@ -1,15 +1,22 @@
-localStorage.setItem("valid", true);
+let fetchCompleted = false;
 
 fetch("https://app.unmxdern.com/api/user-data?email=" + localStorage.getItem("email"))
     .then((response) => response.json())
-    .then((data) => localStorage.setItem('name', data.user))
-    .catch((error) => console.error(error));
+    .then((data) => {
+        localStorage.setItem('name', data.user);
+        fetchCompleted = true;
+    })
+    .catch((error) => {
+        console.error(error);
+        fetchCompleted = true;
+    });
 
-for (i=0; i < 5; i++) {
-    if (localStorage.getItem('name') != null) {
-        setTimeout(function () {window.location.href = "/";}, 500)
+function redirectToHomePage() {
+    if (fetchCompleted && localStorage.getItem('name') !== null) {
+        window.location.href = "/";
+    } else {
+        setTimeout(redirectToHomePage, 500);
     }
 }
 
-localStorage.setItem('name', localStorage.getItem("email"))
-window.location.href = "/";
+redirectToHomePage();
