@@ -22,7 +22,7 @@ class WebflowUserController extends Controller
             ]);
         }
 
-        return response()->json(['user' => $name ?? 'User']);
+        return response()->json(['user' => $name ?? $email], 200);
     }
 
     public function newUser(Request $request)
