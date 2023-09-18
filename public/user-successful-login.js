@@ -1,3 +1,7 @@
 localStorage.setItem("valid", true);
 
-window.location.href = "/";
+fetch("https://app.unmxdern.com/api/user-data")
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+
+// window.location.href = "/";
