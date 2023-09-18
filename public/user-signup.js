@@ -1,6 +1,6 @@
 email = document.querySelector('#wf-log-in-email')
 name = document.querySelector('#wf-sign-up-name')
-form = document.getElementById("log-in");
+form = document.querySelector('[data-wf-user-form-type="signup"]');
 
 form.addEventListener('submit', function () {
     localStorage.setItem("email", email.value);
