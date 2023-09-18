@@ -10,7 +10,6 @@ class WebflowUser extends Model
     use HasFactory;
 
     protected $fillable = [
-        'webflow_id',
         'email',
         'last_login',
         'ip_address',

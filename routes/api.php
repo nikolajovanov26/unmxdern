@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/review', \App\Http\Controllers\ReviewController::class);
+
+Route::post('/new-user', [\App\Http\Controllers\WebflowUserController::class, 'newUser']);
