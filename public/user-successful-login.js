@@ -5,4 +5,8 @@ fetch("https://app.unmxdern.com/api/user-data?email=" + localStorage.getItem("em
     .then((data) => localStorage.setItem('name', data.user))
     .catch((error) => console.error(error));
 
-setTimeout(function () {window.location.href = "/";}, 500)
+while (true) {
+    if (localStorage.getItem('name') != null) {
+        setTimeout(function () {window.location.href = "/";}, 500)
+    }
+}
