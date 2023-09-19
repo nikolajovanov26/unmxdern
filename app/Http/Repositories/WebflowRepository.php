@@ -60,7 +60,7 @@ class WebflowRepository
                     'rating-avg'   => $newAvg,
                 ],
             ]
-        ]))->patch('https://api.webflow.com/v2/sites/' . env('SITE_ID') . '/products/' . $product->slug)
+        ]))->patch('https://api.webflow.com/v2/sites/' . env('SITE_ID') . '/products/' . $product->id)
             ->json();
 
         Log::info('Product updated', [
