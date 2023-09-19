@@ -52,7 +52,7 @@ ratingForm.addEventListener('submit', function (e) {
         newAvg = (Number(ratingCount.innerText) * Number(ratingAvg.innerText) + Number(rating)) / (Number(ratingCount.innerText) + 1)
 
         ratingCount.innerText = (Number(ratingCount.innerText) + 1);
-        ratingAvg.innerText = newAvg
+        ratingAvg.innerText = Math.round(newAvg * 10) / 10
 
         ratingForm.remove()
     }, 2000)
