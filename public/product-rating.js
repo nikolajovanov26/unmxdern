@@ -6,6 +6,18 @@ ratingForm = document.querySelector('#rating-form');
 
 clicked = false
 
+ratingForm = document.querySelector('#rating-form');
+ratingCount = document.querySelector('#review-cnt');
+ratingAvg = document.querySelector('#review-avg');
+
+document.querySelector('#email-rating').value = localStorage.getItem("email");
+document.querySelector('#isValid-rating').value = localStorage.getItem("valid");
+
+parts = window.location.href.split('/');
+document.querySelector('#url-rating').value = parts.at(-1);
+
+updateStars()
+
 starRatingDivs.forEach((div, index) => {
     div.addEventListener('mouseover', () => {
         if (!clicked) {
@@ -35,15 +47,6 @@ starRatingDivs.forEach((div, index) => {
     });
 });
 
-ratingForm = document.querySelector('#rating-form');
-ratingCount = document.querySelector('#review-cnt');
-ratingAvg = document.querySelector('#review-avg');
-
-document.querySelector('#email-rating').value = localStorage.getItem("email");
-document.querySelector('#isValid-rating').value = localStorage.getItem("valid");
-
-parts = window.location.href.split('/');
-document.querySelector('#url-rating').value = parts.at(-1);
 
 ratingForm.addEventListener('submit', function (e) {
     setTimeout(function () {
@@ -54,9 +57,29 @@ ratingForm.addEventListener('submit', function (e) {
         ratingCount.innerText = (Number(ratingCount.innerText) + 1);
         ratingAvg.innerText = Math.round(newAvg * 10) / 10
 
+        if (((Number(ratingAvg.innerText) / 1) - newAvg / 1) != 0) {
+            document.querySelectorAll('.star-div').forEach((div, index) => {
+                if (index + 0.1 <= newAvg) {
+                    div.classList.remove('w-condition-invisible')
+                } else {
+                    div.classList.add('w-condition-invisible')
+                }
+            });
+        }
+
+        updateStars()
+
+
         ratingForm.remove()
     }, 2000)
 });
 
 
-
+function updateStars() {
+    const starDivs = document.querySelectorAll('.star-div:not(.w-condition-invisible)');
+    if (starDivs.length > 0) {
+        const lastStarDiv = starDivs[starDivs.length - 1];
+        widthPercent = Math.round((Number(ratingAvg.innerText) % 1) * 10) / 10
+        lastStarDiv.style.width = widthPercent * lastStarDiv.offsetWidth + 'px'
+    }
+}
