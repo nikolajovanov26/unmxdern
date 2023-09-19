@@ -57,9 +57,9 @@ ratingForm.addEventListener('submit', function (e) {
         ratingCount.innerText = (Number(ratingCount.innerText) + 1);
         ratingAvg.innerText = Math.round(newAvg * 10) / 10
 
-        if (((Number(ratingAvg.innerText) / 1) - newAvg / 1) != 0) {
+        if (((Number(ratingAvg.innerText) / 1) - newAvg / 1) !== 0) {
             document.querySelectorAll('.star-div').forEach((div, index) => {
-                if (index + 0.1 <= newAvg) {
+                if (index - 0.1 <= newAvg) {
                     div.classList.remove('w-condition-invisible')
                 } else {
                     div.classList.add('w-condition-invisible')
