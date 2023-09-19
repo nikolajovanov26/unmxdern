@@ -48,7 +48,7 @@ class ReviewController extends Controller
             'string'          => $content
         ]);
 
-        $author = $user->name ?? 'NAME!';
+        $author = $user->name ?? $user->email ?? '';
 
         (new \App\Http\Repositories\WebflowRepository())->createReview($review, $author);
 
