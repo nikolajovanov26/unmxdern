@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/review', \App\Http\Controllers\ReviewController::class);
+Route::post('/rating', \App\Http\Controllers\RatingController::class);
 
 Route::get('/user-data', [\App\Http\Controllers\WebflowUserController::class, 'data']);
 Route::post('/new-user', [\App\Http\Controllers\WebflowUserController::class, 'newUser']);
