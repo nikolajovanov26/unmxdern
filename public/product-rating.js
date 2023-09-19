@@ -80,6 +80,8 @@ function updateStars() {
     if (starDivs.length > 0) {
         const lastStarDiv = starDivs[starDivs.length - 1];
         widthPercent = Math.round((Number(ratingAvg.innerText) % 1) * 10) / 10
-        lastStarDiv.style.width = widthPercent * lastStarDiv.offsetWidth + 'px'
+        if (widthPercent !== 0) {
+            lastStarDiv.style.width = widthPercent * lastStarDiv.offsetWidth + 'px'
+        }
     }
 }
