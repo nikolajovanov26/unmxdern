@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-    glide = document.querySelector('.glide')
+    let glide = document.querySelector('.glide');
+    let removedScripts = [];
 
     if (glide) {
-        var slidesDiv = document.querySelector('.glide__slides');
+        let slidesDiv = document.querySelector('.glide__slides');
 
+        // Remove the script tags and store them in the removedScripts array
         Array.from(slidesDiv.parentElement.childNodes).forEach(node => {
-            if (!node.classList || !node.classList.contains('glide__slides')) {
+            if (node.tagName === 'SCRIPT') {
+                removedScripts.push(node);
                 node.remove();
             }
         });
@@ -36,5 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const products = new Glide(".glide", settings);
 
         products.mount();
+
+        // Listen for the 'run.end' event, which is triggered when the Glide component has finished mounting
+        products.on('run.end', () => {
+            // Add the removed script tags back to their original place
+            removedScripts.forEach(script => {
+                slidesDiv.parentElement.appendChild(script);
+            });
+        });
     }
 });
