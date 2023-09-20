@@ -27,20 +27,24 @@ class FavoritesController extends Controller
     public function store(Request $request)
     {
         $email = $request->get('email');
-        $product = $request->get('product');
+        $productSlug = $request->get('product');
 
         try {
             $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No user found in Favorites Store route!');
+            Log::error('No user found in Favorites Show route!', [
+                'email' => $email
+            ]);
 
             return response()->json(null, 400);
         }
 
         try {
-            $product = \App\Models\Product::where('slug', $product)->firstOrFail();
+            $product = \App\Models\Product::where('slug', $productSlug)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No user found in Favorites Show route!');
+            Log::error('No product found in Favorites Show route!', [
+                'product' => $productSlug
+            ]);
 
             return response()->json(null, 400);
         }
@@ -55,20 +59,24 @@ class FavoritesController extends Controller
     public function destroy(Request $request)
     {
         $email = $request->get('email');
-        $product = $request->get('product');
+        $productSlug = $request->get('product');
 
         try {
             $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No user found in Favorites Store route!');
+            Log::error('No user found in Favorites Store route!', [
+                'email' => $email
+            ]);
 
             return response()->json(null, 400);
         }
 
         try {
-            $product = \App\Models\Product::where('slug', $product)->firstOrFail();
+            $product = \App\Models\Product::where('slug', $productSlug)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No user found in Favorites Show route!');
+            Log::error('No product found in Favorites Store route!', [
+                'product' => $productSlug
+            ]);
 
             return response()->json(null, 400);
         }
