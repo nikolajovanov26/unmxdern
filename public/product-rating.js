@@ -85,3 +85,11 @@ function updateStars() {
         }
     }
 }
+
+document.querySelector('.rate').addEventListener('mouseleave', function () {
+    if (!clicked) {
+        document.querySelectorAll('.star-rating-form-hover').forEach(div => {
+            div.style.opacity = '0'
+        });
+    }
+})
