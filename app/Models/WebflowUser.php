@@ -15,4 +15,9 @@ class WebflowUser extends Model
         'ip_address',
         'name'
     ];
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Product::class, 'favorite_product');
+    }
 }
