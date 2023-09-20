@@ -14,7 +14,9 @@ class FavoritesController extends Controller
         try {
             $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No user found in Favorites Show route!');
+            Log::error('No user found in Favorites Show route!', [
+                'email' => $email
+            ]);
 
             return response()->json(['products' => '']);
         }
@@ -32,7 +34,7 @@ class FavoritesController extends Controller
         try {
             $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No user found in Favorites Show route!', [
+            Log::error('No user found in Favorites Store route!', [
                 'email' => $email
             ]);
 
@@ -42,7 +44,7 @@ class FavoritesController extends Controller
         try {
             $product = \App\Models\Product::where('slug', $productSlug)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No product found in Favorites Show route!', [
+            Log::error('No product found in Favorites Store route!', [
                 'product' => $productSlug
             ]);
 
@@ -64,7 +66,7 @@ class FavoritesController extends Controller
         try {
             $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No user found in Favorites Store route!', [
+            Log::error('No user found in Favorites Delete route!', [
                 'email' => $email
             ]);
 
@@ -74,7 +76,7 @@ class FavoritesController extends Controller
         try {
             $product = \App\Models\Product::where('slug', $productSlug)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No product found in Favorites Store route!', [
+            Log::error('No product found in Favorites Delete route!', [
                 'product' => $productSlug
             ]);
 

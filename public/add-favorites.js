@@ -38,7 +38,7 @@ document.querySelectorAll('.fav-product-div').forEach((div) => {
                 method: "DELETE",
                 body: JSON.stringify({
                     email: localStorage.getItem('email'),
-                    favorites: div.parentNode.querySelector('a').href.split('/').at(-1),
+                    product: div.parentNode.querySelector('a').href.split('/').at(-1),
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
@@ -53,7 +53,7 @@ document.querySelectorAll('.fav-product-div').forEach((div) => {
                 method: "POST",
                 body: JSON.stringify({
                     email: localStorage.getItem('email'),
-                    favorites: div.parentNode.querySelector('a').href.split('/').at(-1),
+                    product: div.parentNode.querySelector('a').href.split('/').at(-1),
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
