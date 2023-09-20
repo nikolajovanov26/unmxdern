@@ -11,6 +11,16 @@ fetch("https://app.unmxdern.com/api/user-data?email=" + localStorage.getItem("em
         fetchCompleted = true;
     });
 
+fetch("https://app.unmxdern.com/api/favorites?email=" + localStorage.getItem("email"))
+    .then((response) => response.json())
+    .then((data) => {
+        localStorage.setItem('favorites', data.products);
+    })
+    .catch((error) => {
+        console.error(error);
+        fetchCompleted = true;
+    });
+
 function redirectToHomePage() {
     if (fetchCompleted && localStorage.getItem('name') !== null) {
         window.location.href = "/";

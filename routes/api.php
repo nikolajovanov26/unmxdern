@@ -18,6 +18,7 @@ Route::post('/rating', \App\Http\Controllers\RatingController::class);
 
 Route::get('/favorites', [\App\Http\Controllers\FavoritesController::class, 'show']);
 Route::post('/favorites', [\App\Http\Controllers\FavoritesController::class, 'store']);
+Route::delete('/favorites', [\App\Http\Controllers\FavoritesController::class, 'destroy']);
 
 Route::get('/user-data', [\App\Http\Controllers\WebflowUserController::class, 'data']);
 Route::post('/new-user', [\App\Http\Controllers\WebflowUserController::class, 'newUser']);
