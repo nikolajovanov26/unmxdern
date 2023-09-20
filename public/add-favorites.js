@@ -43,7 +43,14 @@ document.querySelectorAll('.fav-product-div').forEach((div) => {
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
-            })
+            }).then((response) => response.json())
+                .then((data) => {
+                    localStorage.setItem('favorites', data.products);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    fetchCompleted = true;
+                });
         } else {
             active.classList.add('active')
             active.style.opacity = '1'
@@ -58,11 +65,14 @@ document.querySelectorAll('.fav-product-div').forEach((div) => {
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
-            })
+            }).then((response) => response.json())
+                .then((data) => {
+                    localStorage.setItem('favorites', data.products);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    fetchCompleted = true;
+                });
         }
-
-        localStorage.setItem('favorites', favorites.join(','))
-
-
     })
 })
