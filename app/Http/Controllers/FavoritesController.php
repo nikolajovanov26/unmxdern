@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 
 class FavoritesController extends Controller
@@ -44,11 +45,23 @@ class FavoritesController extends Controller
         try {
             $product = \App\Models\Product::where('slug', $productSlug)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No product found in Favorites Store route!', [
+            Log::error('Syncing product on store', [
                 'product' => $productSlug
             ]);
 
-            return response()->json(null, 400);
+            Artisan::call('app:sync-products');
+
+            try {
+                $product = \App\Models\Product::where('slug', $productSlug)->firstOrFail();
+            } catch (Exception $exception) {
+                Log::error('No product found in Favorites Store route!', [
+                    'product' => $productSlug
+                ]);
+            }
+
+            return response()->json([
+                'products' => implode(',', $user->favorites->pluck('slug')->unique()->toArray())
+            ]);
         }
 
         $user->favorites()->syncWithoutDetaching($product);
@@ -76,11 +89,23 @@ class FavoritesController extends Controller
         try {
             $product = \App\Models\Product::where('slug', $productSlug)->firstOrFail();
         } catch (Exception $exception) {
-            Log::error('No product found in Favorites Delete route!', [
+            Log::error('Syncing product on delete', [
                 'product' => $productSlug
             ]);
 
-            return response()->json(null, 400);
+            Artisan::call('app:sync-products');
+
+            try {
+                $product = \App\Models\Product::where('slug', $productSlug)->firstOrFail();
+            } catch (Exception $exception) {
+                Log::error('No product found in Favorites Delete route!', [
+                    'product' => $productSlug
+                ]);
+            }
+
+            return response()->json([
+                'products' => implode(',', $user->favorites->pluck('slug')->unique()->toArray())
+            ]);
         }
 
         $user->favorites()->detach($product);
