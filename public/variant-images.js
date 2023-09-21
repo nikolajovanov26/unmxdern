@@ -2,7 +2,7 @@ parts = window.location.href.split('/');
 slug = parts.at(-1);
 buttons = document.querySelectorAll('.variant-button')
 
-fetch("https://app.unmxdern.com/api/variant-photos?slug=" + slug, {
+fetch("https://app.unmxdern.com/api/variant-photos?product=" + slug, {
     method: "GET",
     headers: {
         "Content-type": "application/json; charset=UTF-8"
