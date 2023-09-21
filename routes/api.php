@@ -22,3 +22,5 @@ Route::delete('/favorites', [\App\Http\Controllers\FavoritesController::class, '
 
 Route::get('/user-data', [\App\Http\Controllers\WebflowUserController::class, 'data']);
 Route::post('/new-user', [\App\Http\Controllers\WebflowUserController::class, 'newUser']);
+
+Route::get('/variant-photos', \App\Http\Controllers\VariantImageController::class);

@@ -42,7 +42,7 @@ class WebflowRepository
             $product = $product->fresh();
         }
 
-        $productData = $this->getProductData($product);
+        $productData = $this->getProductData($product)['product'];
 
         $count = $productData['fieldData']['rating-count'];
         $avg = $productData['fieldData']['rating-avg'];
@@ -125,6 +125,6 @@ class WebflowRepository
             'response' => $response
         ]);
 
-        return $response['product'];
+        return $response;
     }
 }
