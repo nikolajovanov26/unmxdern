@@ -12,10 +12,9 @@ use Illuminate\Support\Str;
 
 class VariantImageController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-//        $productSlug = $request->get('product');
-        $productSlug = Product::first()->slug;
+        $productSlug = $request->get('product');
 
         try {
             $product = \App\Models\Product::where('slug', $productSlug)->firstOrFail();
