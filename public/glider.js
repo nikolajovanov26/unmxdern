@@ -15,6 +15,10 @@ if (options !== null) {
     setTimeout(function () {
         document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').click()
     }, 700)
+} else {
+    setTimeout(function () {
+        addZoomInEffect()
+    }, 200)
 }
 
 function createGlide() {
