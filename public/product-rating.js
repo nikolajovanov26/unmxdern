@@ -52,7 +52,18 @@ ratingForm.addEventListener('submit', function (e) {
     setTimeout(function () {
         rating = document.querySelector('#star-rating').value;
 
-        newAvg = (Number(ratingCount.innerText) * Number(ratingAvg.innerText) + Number(rating)) / (Number(ratingCount.innerText) + 1)
+        if (Number(ratingCount.innerText) === 0) {
+            newAvg = Number(rating)
+
+            document.querySelectorAll('.star-div.w-condition-invisible').forEach((div, index) => {
+                if (index < Number(rating)) {
+                    div.classList.remove('w-condition-invisible')
+                }
+            });
+
+        } else {
+            newAvg = (Number(ratingCount.innerText) * Number(ratingAvg.innerText) + Number(rating)) / (Number(ratingCount.innerText) + 1)
+        }
 
         ratingCount.innerText = (Number(ratingCount.innerText) + 1);
         ratingAvg.innerText = Math.round(newAvg * 10) / 10

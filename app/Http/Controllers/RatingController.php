@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\WebflowUser;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 
 class RatingController extends Controller
@@ -13,32 +14,38 @@ class RatingController extends Controller
     public function __invoke(Request $request)
     {
         $email = $request->get('email');
-//        $isValid = $request->get('isValid');
-        $isValid = true;
         $rating = $request->get('rating');
         $url = $request->get('url');
-        $ip = $request->get('ip');
 
         try {
-            if ($isValid) {
-                $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
-            } else {
-                $user = \App\Models\WebflowUser::where('ip_address', $ip)->firstOrFail();
-            }
+            $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
 
         } catch (Exception $exception) {
-            Log::error('No user found!');
+            Log::error('No user found!', [
+                'email' => $email
+            ]);
 
-            $user = WebflowUser::first();
+            return response()->json(null, 400);
         }
 
-        $product = \App\Models\Product::firstWhere('slug', $url);
-
-        if (!isset($product)) {
-            $product = Product::create([
-                'name' => 'Product name',
-                'slug' => $url
+        try {
+            $product = \App\Models\Product::where('slug', $url)->firstOrFail();
+        } catch (Exception $exception) {
+            Log::error('Syncing product on store', [
+                'product' => $url
             ]);
+
+            Artisan::call('app:sync-products');
+
+            try {
+                $product = \App\Models\Product::where('slug', $url)->firstOrFail();
+            } catch (Exception $exception) {
+                Log::error('No product found in Favorites Store route!', [
+                    'product' => $url
+                ]);
+            }
+
+            return response()->json(null, 400);
         }
 
         $rating = \App\Models\Rating::create([

@@ -44,10 +44,12 @@ class WebflowRepository
 
         $productData = $this->getProductData($product)['product'];
 
-        $count = $productData['fieldData']['rating-count'];
-        $avg = $productData['fieldData']['rating-avg'];
+        $count = $productData['fieldData']['rating-count'] ?? 0;
+        $avg = $productData['fieldData']['rating-avg'] ?? 0;
 
-        $newAvg = (($count * $avg) + $rating->rating) / ($count + 1);
+        $newAvg = $count == 0
+            ? $rating->rating
+            : (($count * $avg) + $rating->rating) / ($count + 1);
 
         $response = Http::withHeaders([
             'accept'        => 'application/json',

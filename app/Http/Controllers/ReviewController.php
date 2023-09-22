@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\WebflowUser;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 
 class ReviewController extends Controller
@@ -27,12 +28,22 @@ class ReviewController extends Controller
             return response()->json(null, 400);
         }
 
-        $product = \App\Models\Product::firstWhere('slug', $url);
-
-        if (!isset($product)) {
-            Log::error('No product found!', [
-                'product_url' => $url
+        try {
+            $product = \App\Models\Product::where('slug', $url)->firstOrFail();
+        } catch (Exception $exception) {
+            Log::error('Syncing product on store', [
+                'product' => $url
             ]);
+
+            Artisan::call('app:sync-products');
+
+            try {
+                $product = \App\Models\Product::where('slug', $url)->firstOrFail();
+            } catch (Exception $exception) {
+                Log::error('No product found in Favorites Store route!', [
+                    'product' => $url
+                ]);
+            }
 
             return response()->json(null, 400);
         }
