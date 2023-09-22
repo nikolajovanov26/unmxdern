@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         element.parentNode.replaceChild(clone, element);
 
         createGlide()
-        addZoomInEffect
+        addZoomInEffect()
     });
 
     document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').click()
