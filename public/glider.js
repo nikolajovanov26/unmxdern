@@ -10,10 +10,9 @@ document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').addEventL
     addZoomInEffect()
 });
 
-setTimeout(function () {
+document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').click()
-}, 150)
-
+});
 function createGlide() {
     glide = document.querySelector('.glide');
     removedScripts = [];
