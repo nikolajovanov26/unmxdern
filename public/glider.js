@@ -1,18 +1,21 @@
+options = document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e');
 
-document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').addEventListener('click', function () {
-    document.querySelectorAll('.glide__slide.gray.w-dyn-item.w-dyn-repeater-item.glide__slide--clone').forEach(div => div.remove())
+if (options !== null) {
+    document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').addEventListener('click', function () {
+        document.querySelectorAll('.glide__slide.gray.w-dyn-item.w-dyn-repeater-item.glide__slide--clone').forEach(div => div.remove())
 
-    element = document.querySelector('.glide__track')
-    clone = element.cloneNode(true);
-    element.parentNode.replaceChild(clone, element);
+        element = document.querySelector('.glide__track')
+        clone = element.cloneNode(true);
+        element.parentNode.replaceChild(clone, element);
 
-    createGlide()
-    addZoomInEffect()
-});
+        createGlide()
+        addZoomInEffect()
+    });
 
-setTimeout(function () {
-    document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').click()
-}, 700)
+    setTimeout(function () {
+        document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').click()
+    }, 700)
+}
 
 function createGlide() {
     glide = document.querySelector('.glide');
