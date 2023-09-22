@@ -61,6 +61,8 @@ ratingForm.addEventListener('submit', function (e) {
                 }
             });
 
+            document.querySelector('#review-avg').classList.remove('w-dyn-bind-empty')
+
         } else {
             newAvg = (Number(ratingCount.innerText) * Number(ratingAvg.innerText) + Number(rating)) / (Number(ratingCount.innerText) + 1)
         }
