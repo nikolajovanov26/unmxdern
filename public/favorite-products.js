@@ -28,6 +28,16 @@ document.querySelectorAll('.fav-product-div').forEach((div) => {
                 fetchCompleted = true;
             });
 
-        div.parentNode.remove()
+        div.parentNode.querySelector('a').innerHTML = 'Product Removed'
+        div.parentNode.querySelector('a').style.display = 'flex'
+        div.parentNode.querySelector('a').style.justifyContent = 'center'
+        div.parentNode.querySelector('a').style.alignItems = 'center'
+        div.parentNode.querySelector('a').style.color = '#292c39'
+        div.parentNode.querySelector('a').style.fontWeight = 900
+        div.style.opacity = '0'
+
+        setTimeout(function () {
+            div.parentNode.remove()
+        }, 1500)
     })
 })
