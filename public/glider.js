@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
         createGlide()
         addZoomInEffect()
     });
-
-    document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').click()
 });
 
 function createGlide() {
@@ -64,5 +62,7 @@ function createGlide() {
         removedScripts.forEach(script => {
             slidesDiv.parentElement.appendChild(script);
         });
+
+        document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').click()
     }
 }
