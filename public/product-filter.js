@@ -120,3 +120,9 @@ function filter()
         }
     })
 }
+
+rangeInput.forEach(input => {
+    input.addEventListener("input", debounce(function () {
+        filter()
+    }, 250));
+});
