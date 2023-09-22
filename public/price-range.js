@@ -39,5 +39,7 @@ rangeInput.forEach(input => {
                 max.style.right = maxP + "%";
             }
         }
+
+        filter()
     });
 });
