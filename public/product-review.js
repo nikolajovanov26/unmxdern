@@ -27,6 +27,10 @@ reviewForm.addEventListener('submit', function (e) {
         </div>
     `;
 
-        reviewsDiv.insertAdjacentHTML('afterbegin', newReviewHTML);
+        if (reviewsDiv === null) {
+            document.querySelector('.review-list.w-dyn-list').innerHTML = newReviewHTML
+        } else {
+            reviewsDiv.insertAdjacentHTML('afterbegin', newReviewHTML);
+        }
     }, 2000)
 });
