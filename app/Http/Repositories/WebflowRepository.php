@@ -20,7 +20,7 @@ class WebflowRepository
             'fieldData' => [
                 'body'    => $review->string,
                 'name'    => $author,
-                'product' => '64d957a1399cb463eb5bdfc1',
+                'product' => $review->product->webflow_id,
             ]
         ]))->post(self::BASEURL . '/collections/' . env('REVIEW_COLLECTION_ID') . '/items')
             ->json();

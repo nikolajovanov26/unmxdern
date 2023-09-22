@@ -13,33 +13,28 @@ class ReviewController extends Controller
     public function __invoke(Request $request)
     {
         $email = $request->get('email');
-//        $isValid = $request->get('isValid');
-        $isValid = true;
         $content = $request->get('content');
         $url = $request->get('url');
-        $ip = $request->get('ip');
 
         try {
-            if ($isValid) {
-                $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
-            } else {
-                $user = \App\Models\WebflowUser::where('ip_address', $ip)->firstOrFail();
-            }
+            $user = \App\Models\WebflowUser::where('email', $email)->firstOrFail();
 
         } catch (Exception $exception) {
-            Log::error('No user found!');
+            Log::error('No user found!', [
+                'email' => $email
+            ]);
 
-            $user = WebflowUser::first();
+            return response()->json(null, 400);
         }
 
         $product = \App\Models\Product::firstWhere('slug', $url);
 
         if (!isset($product)) {
-            $product = Product::create([
-                'webflow_id' => '64d957a1399cb463eb5bdf3e',
-                'name' => 'Product name',
-                'slug' => $url
+            Log::error('No product found!', [
+                'product_url' => $url
             ]);
+
+            return response()->json(null, 400);
         }
 
         $review = \App\Models\Review::create([
