@@ -1,14 +1,18 @@
-const containers = document.querySelectorAll(".zoom-image-div");
-const images = document.querySelectorAll(".zoom-image-div img");
+addZoomInEffect();
 
-const enabledStates = new Array(containers.length).fill(false);
+function addZoomInEffect() {
+    containers = document.querySelectorAll(".zoom-image-div");
+    images = document.querySelectorAll(".zoom-image-div img");
 
-containers.forEach((container, index) => {
-    container.addEventListener("mousemove", (e) => onZoom(e, index));
-    container.addEventListener("mouseover", (e) => onZoom(e, index));
-    container.addEventListener("click", (e) => toggleZoom(e, index));
-    container.addEventListener("mouseleave", () => offZoom(index));
-});
+    enabledStates = new Array(containers.length).fill(false);
+
+    containers.forEach((container, index) => {
+        container.addEventListener("mousemove", (e) => onZoom(e, index));
+        container.addEventListener("mouseover", (e) => onZoom(e, index));
+        container.addEventListener("click", (e) => toggleZoom(e, index));
+        container.addEventListener("mouseleave", () => offZoom(index));
+    });
+}
 
 function onZoom(e, index) {
     if (enabledStates[index]) {
