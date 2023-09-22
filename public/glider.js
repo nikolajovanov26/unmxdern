@@ -1,7 +1,7 @@
-options = document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e');
+options = document.querySelector('[id^="option-set-"]');
 
 if (options !== null) {
-    document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').addEventListener('click', function () {
+    options.addEventListener('click', function () {
         document.querySelectorAll('.glide__slide.gray.w-dyn-item.w-dyn-repeater-item.glide__slide--clone').forEach(div => div.remove())
 
         element = document.querySelector('.glide__track')
@@ -13,7 +13,7 @@ if (options !== null) {
     });
 
     setTimeout(function () {
-        document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').click()
+        options.click()
     }, 700)
 } else {
     setTimeout(function () {
