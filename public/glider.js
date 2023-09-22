@@ -10,9 +10,10 @@ document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').addEventL
     addZoomInEffect()
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+setTimeout(function () {
     document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').click()
-});
+}, 700)
+
 function createGlide() {
     glide = document.querySelector('.glide');
     removedScripts = [];
@@ -62,7 +63,5 @@ function createGlide() {
         removedScripts.forEach(script => {
             slidesDiv.parentElement.appendChild(script);
         });
-
-        addZoomInEffect()
     }
 }
