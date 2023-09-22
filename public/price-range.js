@@ -31,10 +31,10 @@ rangeInput.forEach(input => {
             range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
             range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
 
-            minP = (((minVal / rangeInput[0].max) * 100) - 5);
+            minP = (((minVal / rangeInput[0].max) * 100) - 8);
             maxP = 94 - (maxVal / rangeInput[1].max) * 100
 
-            if (minP + maxP < 74) {
+            if (minP + maxP < 55) {
                 min.style.left = minP + "%";
                 max.style.right = maxP + "%";
             }
