@@ -9,14 +9,14 @@ rangeInput.forEach(input => {
             maxVal = parseInt(rangeInput[1].value);
 
         if (minVal < maxVal) {
-            min.innerHTML = minVal
-            max.innerHTML = maxVal
+            min.innerHTML = '$' + minVal
+            max.innerHTML = '$' + maxVal
         } else {
             if (e.target.className === "range-min") {
-                min.innerHTML = maxVal
+                min.innerHTML = '$' + maxVal
 
             } else {
-                max.innerHTML = minVal
+                max.innerHTML = '$' + minVal
 
             }
         }
