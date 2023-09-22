@@ -13,6 +13,12 @@ document.querySelector('#option-set-6880adb96d8fc51c4b67e9e4ce4bce7e').addEventL
     addZoomInEffect()
 });
 
+document.querySelectorAll('.glide__slide.gray.w-dyn-item.w-dyn-repeater-item.glide__slide--clone').forEach(div => div.remove())
+
+element = document.querySelector('.glide__track')
+clone = element.cloneNode(true);
+element.parentNode.replaceChild(clone, element);
+
 createGlide()
 addZoomInEffect()
 
