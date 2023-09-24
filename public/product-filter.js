@@ -73,7 +73,7 @@ document.querySelector('[data-filter-category="1-50"]').addEventListener('click'
     products[0] = !products[0]
     document.querySelector('[data-filter-category="1-50"]').classList.toggle('checked')
 
-    document.querySelector('[data-filter-category="1-50"] img').style.display = sale ? 'block' : 'none'
+    document.querySelector('[data-filter-category="1-50"] img').style.display = products[0] ? 'block' : 'none'
     filter()
 })
 
@@ -81,7 +81,7 @@ document.querySelector('[data-filter-category="50-100"]').addEventListener('clic
     products[1] = !products[1]
     document.querySelector('[data-filter-category="50-100"]').classList.toggle('checked')
 
-    document.querySelector('[data-filter-category="50-100"] img').style.display = sale ? 'block' : 'none'
+    document.querySelector('[data-filter-category="50-100"] img').style.display = products[1] ? 'block' : 'none'
     filter()
 })
 
@@ -89,7 +89,7 @@ document.querySelector('[data-filter-category="100-250"]').addEventListener('cli
     products[2] = !products[2]
     document.querySelector('[data-filter-category="100-250"]').classList.toggle('checked')
 
-    document.querySelector('[data-filter-category="100-250"] img').style.display = sale ? 'block' : 'none'
+    document.querySelector('[data-filter-category="100-250"] img').style.display = products[2] ? 'block' : 'none'
     filter()
 })
 
@@ -97,7 +97,7 @@ document.querySelector('[data-filter-category="250-500"]').addEventListener('cli
     products[3] = !products[3]
     document.querySelector('[data-filter-category="250-500"]').classList.toggle('checked')
 
-    document.querySelector('[data-filter-category="250-500"] img').style.display = sale ? 'block' : 'none'
+    document.querySelector('[data-filter-category="250-500"] img').style.display = products[3] ? 'block' : 'none'
     filter()
 })
 
@@ -144,25 +144,25 @@ function filter()
             productPrice = div.querySelector('[data-filter="price"]').innerText.replace(/\D/g, '') / 100;
 
             if (!products[0]) {
-                if (1 <= productPrice && productPrice <= 50) {
+                if (1 < productPrice && productPrice < 50) {
                     div.style.display = 'none';
                 }
             }
 
             if (!products[1]) {
-                if (50 <= productPrice && productPrice <= 100) {
+                if (50 < productPrice && productPrice < 100) {
                     div.style.display = 'none';
                 }
             }
 
             if (!products[2]) {
-                if (100 <= productPrice && productPrice <= 250) {
+                if (100 < productPrice && productPrice < 250) {
                     div.style.display = 'none';
                 }
             }
 
             if (!products[3]) {
-                if (250 <= productPrice && productPrice <= 500) {
+                if (250 < productPrice && productPrice < 500) {
                     div.style.display = 'none';
                 }
             }
