@@ -1,0 +1,105 @@
+<style>
+    .slider {
+        height: 5px;
+        position: relative;
+        background: #e5e6f2;
+        border-radius: 5px;
+    }
+
+    .slider .progress {
+        width: auto;
+        height: 100%;
+        left: 0%;
+        right: 0%;
+        position: absolute;
+        border-radius: 5px;
+        background: #6385ee;
+    }
+
+    .range-input {
+        position: absolute;
+        width: 100%;
+        top: -2px;
+        left: -2px;
+    }
+
+    .range-input input {
+        position: absolute;
+        width: 102%;
+        height: 8px;
+        background: none;
+        pointer-events: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
+        background: #898b9b;
+        pointer-events: auto;
+        -webkit-appearance: none;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        height: 14px;
+        width: 14px;
+        border: none;
+        border-radius: 50%;
+        background: #0F172A;
+        pointer-events: auto;
+        -moz-appearance: none;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    }
+
+    #min-price, #max-price {
+        position: absolute;
+        height: 36px;
+        width: 42px;
+        border-radius: 8px;
+        background-color: #EEF2F6;
+        color: #0F172A;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+    }
+
+    #min-price {
+        left: -8%;
+    }
+
+    #max-price {
+        right: -6%;
+    }
+</style>
+<div class="relative" style="height: 36px; margin-bottom: 13px;">
+    <div id="min-price">
+        $1
+    </div>
+
+    <div id="max-price">
+        $500
+    </div>
+</div>
+<div class="relative">
+    <div class="slider">
+        <div class="progress"></div>
+    </div>
+    <div class="range-input">
+        <input type="range" class="range-min" min="0" max="500" value="1" step="1">
+        <input type="range" class="range-max" min="0" max="500" value="500" step="1">
+    </div>
+</div>
+
+<script>
+    rangeInput.forEach(input => {
+        input.addEventListener("input", debounce(function () {
+            filter()
+        }, 250));
+    });
+</script>
