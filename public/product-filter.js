@@ -94,7 +94,7 @@ document.querySelector('[data-filter-category="100-250"]').addEventListener('cli
 })
 
 document.querySelector('[data-filter-category="250-500"]').addEventListener('click', function () {
-    products[2] = !products[2]
+    products[3] = !products[3]
     document.querySelector('[data-filter-category="250-500"]').classList.toggle('checked')
 
     document.querySelector('[data-filter-category="250-500"] img').style.display = sale ? 'block' : 'none'
@@ -144,37 +144,28 @@ function filter()
             productPrice = div.querySelector('[data-filter="price"]').innerText.replace(/\D/g, '') / 100;
 
             if (!products[0]) {
-                document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
-                    if (1 <= productPrice && productPrice <= 50) {
-                        div.style.display = 'none';
-                    }
-                })
+                if (1 <= productPrice && productPrice <= 50) {
+                    div.style.display = 'none';
+                }
             }
 
             if (!products[1]) {
-                document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
-                    if (50 <= productPrice && productPrice <= 100) {
-                        div.style.display = 'none';
-                    }
-                })
+                if (50 <= productPrice && productPrice <= 100) {
+                    div.style.display = 'none';
+                }
             }
 
             if (!products[2]) {
-                document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
-                    if (100 <= productPrice && productPrice <= 250) {
-                        div.style.display = 'none';
-                    }
-                })
+                if (100 <= productPrice && productPrice <= 250) {
+                    div.style.display = 'none';
+                }
             }
 
             if (!products[3]) {
-                document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
-                    if (250 <= productPrice && productPrice <= 500) {
-                        div.style.display = 'none';
-                    }
-                })
+                if (250 <= productPrice && productPrice <= 500) {
+                    div.style.display = 'none';
+                }
             }
         })
-
     }
 }
