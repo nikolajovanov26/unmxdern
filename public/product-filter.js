@@ -134,11 +134,19 @@ function filter() {
     }
 
     if (sale) {
-        document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
-            if (div.querySelector('[data-filter-tag]').innerText !== 'Sale') {
+        saleItems = document.querySelectorAll('.product-div.w-dyn-item');
+
+        if (saleItems.length !== 0) {
+            document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
+                if (div.querySelector('[data-filter-tag]').innerText !== 'Sale') {
+                    div.style.display = 'none';
+                }
+            })
+        } else {
+            document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
                 div.style.display = 'none';
-            }
-        })
+            })
+        }
     }
 
     if (!products.every(element => element === false)) {
