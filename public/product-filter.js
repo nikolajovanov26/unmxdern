@@ -154,25 +154,25 @@ function filter() {
             productPrice = div.querySelector('[data-filter="price"]').innerText.replace(/\D/g, '') / 100;
 
             if (!products[0]) {
-                if (1 <= productPrice && productPrice < 50) {
+                if (1 <= productPrice && productPrice <= 50.9) {
                     div.style.display = 'none';
                 }
             }
 
             if (!products[1]) {
-                if (50 <= productPrice && productPrice < 100) {
+                if (51 <= productPrice && productPrice < 100.9) {
                     div.style.display = 'none';
                 }
             }
 
             if (!products[2]) {
-                if (100 <= productPrice && productPrice < 250) {
+                if (101 <= productPrice && productPrice < 250.9) {
                     div.style.display = 'none';
                 }
             }
 
             if (!products[3]) {
-                if (250 <= productPrice && productPrice < 500) {
+                if (251 <= productPrice && productPrice < 500.9) {
                     div.style.display = 'none';
                 }
             }
