@@ -140,38 +140,41 @@ function filter()
     }
 
     if (!products.every(element => element === false)) {
-        productPrice = div.querySelector('[data-filter="price"]').innerText.replace(/\D/g, '') / 100;
+        document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
+            productPrice = div.querySelector('[data-filter="price"]').innerText.replace(/\D/g, '') / 100;
 
-        if (!products[0]) {
-            document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
-                if (1 <= productPrice && productPrice <= 50) {
-                    div.style.display = 'none';
-                }
-            })
-        }
+            if (!products[0]) {
+                document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
+                    if (1 <= productPrice && productPrice <= 50) {
+                        div.style.display = 'none';
+                    }
+                })
+            }
 
-        if (!products[1]) {
-            document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
-                if (50 <= productPrice && productPrice <= 100) {
-                    div.style.display = 'none';
-                }
-            })
-        }
+            if (!products[1]) {
+                document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
+                    if (50 <= productPrice && productPrice <= 100) {
+                        div.style.display = 'none';
+                    }
+                })
+            }
 
-        if (!products[2]) {
-            document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
-                if (100 <= productPrice && productPrice <= 250) {
-                    div.style.display = 'none';
-                }
-            })
-        }
+            if (!products[2]) {
+                document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
+                    if (100 <= productPrice && productPrice <= 250) {
+                        div.style.display = 'none';
+                    }
+                })
+            }
 
-        if (!products[3]) {
-            document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
-                if (250 <= productPrice && productPrice <= 500) {
-                    div.style.display = 'none';
-                }
-            })
-        }
+            if (!products[3]) {
+                document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
+                    if (250 <= productPrice && productPrice <= 500) {
+                        div.style.display = 'none';
+                    }
+                })
+            }
+        })
+
     }
 }
