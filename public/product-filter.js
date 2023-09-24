@@ -5,7 +5,7 @@ products = [false, false, false, false]
 if (document.querySelector('[data-filter-category=all]') != null) {
     document.querySelector('[data-filter-category=all]').addEventListener('click', function () {
         document.querySelectorAll('[data-filter-category]').forEach(div => {
-            if(div.dataset.filterCategory === 'all') {
+            if (div.dataset.filterCategory === 'all') {
                 div.classList.add('active')
             } else {
                 div.classList.remove('active')
@@ -21,7 +21,7 @@ if (document.querySelector('[data-filter-category=all]') != null) {
 if (document.querySelector('[data-filter-category=men]') != null) {
     document.querySelector('[data-filter-category=men]').addEventListener('click', function () {
         document.querySelectorAll('[data-filter-category]').forEach(div => {
-            if(div.dataset.filterCategory === 'men') {
+            if (div.dataset.filterCategory === 'men') {
                 div.classList.add('active')
             } else {
                 div.classList.remove('active')
@@ -34,7 +34,7 @@ if (document.querySelector('[data-filter-category=men]') != null) {
 }
 
 
-if (document.querySelector('[data-filter-category=men]') != null) {
+if (document.querySelector('[data-filter-category=women]') != null) {
     document.querySelector('[data-filter-category=women]').addEventListener('click', function () {
         document.querySelectorAll('[data-filter-category]').forEach(div => {
             if (div.dataset.filterCategory === 'women') {
@@ -48,18 +48,21 @@ if (document.querySelector('[data-filter-category=men]') != null) {
         filter()
     })
 }
-document.querySelector('[data-filter-category]').addEventListener('click', function () {
-    document.querySelectorAll('[data-filter-category]').forEach(div => {
-        if(div.dataset.filterCategory === 'accessories') {
-            div.classList.add('active')
-        } else {
-            div.classList.remove('active')
-        }
-    })
 
-    category = 'accessories';
-    filter()
-})
+if (document.querySelector('[data-filter-category=accessories]') != null) {
+    document.querySelector('[data-filter-category=accessories]').addEventListener('click', function () {
+        document.querySelectorAll('[data-filter-category]').forEach(div => {
+            if (div.dataset.filterCategory === 'accessories') {
+                div.classList.add('active')
+            } else {
+                div.classList.remove('active')
+            }
+        })
+
+        category = 'accessories';
+        filter()
+    })
+}
 
 document.querySelector('[data-filter-category="sale"]').addEventListener('click', function () {
     sale = !sale
@@ -101,8 +104,7 @@ document.querySelector('[data-filter-category="250-500"]').addEventListener('cli
     filter()
 })
 
-function filter()
-{
+function filter() {
     document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
         div.style.display = 'block'
     })
@@ -131,7 +133,7 @@ function filter()
         })
     }
 
-    if (sale)  {
+    if (sale) {
         document.querySelectorAll('.product-div.w-dyn-item').forEach(div => {
             if (div.querySelector('[data-filter-tag]').innerText !== 'Sale') {
                 div.style.display = 'none';
